@@ -47,7 +47,7 @@ The router node is a regular SAM R21 board with an Ethernet connector
 board that runs the Thingsquare router firmware.
 * Attach the Ethernet extension board to the EXT1 header on the R21 board
 * Program the node using Atmel studio as above with the Thingsquare SAMR21 Ethernet router firmware `gateway.hex`
-from the [firmware directory](../firwmare/)
+from the [firmware directory](../firmware/)
 
 
 ## Power up the wireless nodes
