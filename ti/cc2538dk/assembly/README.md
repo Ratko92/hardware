@@ -1,5 +1,4 @@
-These are the assembly instructions for a [Thingsquare IoT
-cloud](http://thingsquare.com/) system based on the Texas Instruments
+These are the assembly instructions for a [Thingsquare](http://thingsquare.com/) system based on the Texas Instruments
 CC2538 wireless System-on-a-Chip.
 
 A TI CC2538-based Thingsquare IoT cloud system consists of a number of
@@ -27,10 +26,9 @@ Software needed to be installed and firmware needed to be downloaded
 to build a Thingsquare system:
 
 * [TI Flash Programmer 2](http://www.ti.com/tool/flash-programmer)
-* The Thingsquare CC2538dk firmware from the [Thingsquare
-  download page](http://thingsquare.com/download/)
-* The Thingsquare Ethernet router firmware from the [Thingsquare
-  download page](http://thingsquare.com/download/)
+* The Thingsquare CC2538dk firmware `client.bin` from the [firmware
+  download page](../firmware/)
+* The Thingsquare Ethernet router firmware `gateway.bin` from the [firmware download page](../firmware/)
 
 # The Wireless Nodes
 
@@ -51,8 +49,8 @@ CC2538em boards mounted on top of them.
 
 ![Flash programmer 2 screenshot](flashing-node.png?raw=true)
 
-* Download the Thingsqure CC2538dk firmware from the [Thingsquare
-  download page](http://thingsquare.com/download/)
+* Download the Thingsqure CC2538dk firmware `client.bin` from the [firmware
+  download page](../firmware/)
 * On the laptop, run the [TI Flash Programmer
   2](http://www.ti.com/tool/flash-programmer) to upload the firmware
   to the board. Use the following settings:
@@ -63,9 +61,9 @@ CC2538em boards mounted on top of them.
 
 ## Turn on the wireless nodes
 
-![](build02.jpg?raw=true)
-
-* The LCD screen should display the text "Waiting for wireless network..."
+* The LEDs should start blinking
+* Nothing will be displayed on the LCD screen
+* The LEDs will stop blinking once the device has successfully connected to the Thingsquare backend
 * Build the Ethernet router per below
 
 # The Ethernet Router
@@ -114,8 +112,8 @@ an Olimex Ethernet module, connected via Dupont cables.
 
 * Connect the SmartRF06 board to the laptop via a USB
   cable
-* Download the CC2538dk Ethernet router firmware from the [Thingsquare
-  download page](http://thingsquare.com/download/)
+* Download the CC2538dk Ethernet router firmware `gateway.bin` from the [firmware
+  download page](../firmware/)
 * On the laptop, run the [TI Flash Programmer
   2](http://www.ti.com/tool/flash-programmer) to upload the firmware
   to the board. Use the following settings:
@@ -135,11 +133,18 @@ an Olimex Ethernet module, connected via Dupont cables.
   is looking for its IP address
 * When the red LED has stopped blinking, the wireless
   nodes should be able to connect to the cloud.
+* The LCD display of the Ethernet board should not display anything
 
-# Log in to the cloud
+# Open the app
+Download the Thingsquare app from Google Play or the Apple app store and open it.
 
-If everything has gone well, the wireless nodes should show a PIN
-number. Log in to the [Thingsquare cloud](https://demo.thsq.io) and
-register your devices with their PIN numbers.
+Tap the _Devices_ button to see the list of nearby devices. If the CC2538dk boards are not in the list, tap the _Scan_ button to scan for new devices.
 
-![Register the PIN](register-pin-slanted.jpg?raw=true)
+## Troubleshooting
+
+If you don't see the devices in the list even after scanning, make sure the LEDs have stopped blinking. If the LEDs are blinking, this means that the devices have not yet connected to the backend.
+
+If the devices still do not show up in the app after scanning, make sure you are connected to the same WiFi as the Ethernet gateway.
+
+
+

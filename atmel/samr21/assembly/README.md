@@ -1,5 +1,5 @@
 These are the assembly instructions and firmware files for setting up a
-[Thingsquare IoT cloud](http://thingsquare.com) system based on the
+[Thingsquare](http://thingsquare.com) system based on the
 Atmel wireless [SAM R21](http://www.atmel.com/tools/atsamr21-xpro.aspx)
 System-on-a-Chip.
 
@@ -9,9 +9,9 @@ Hardware needed to build a Thingsquare system:
 
 * At least two [SAM R21 Xplained Pro evaluation boards](http://www.atmel.com/tools/atsamr21-xpro.aspx)
 * Micro USB cables (one per SAM R21 device)
-* One Atmel Ethernet1 Xplained PRO extension board (available soon)
+* One [Atmel Ethernet1 Xplained PRO extension board](http://www.atmel.com/tools/ETHERNET1_XPRO.aspx)
 * An Ethernet cable
-* An Ethernet port connected to the Internet
+* A WiFi router with an Ethernet port connected to the Internet
 * A PC for uploading the Thingsquare firmware to the chips
 
 ## Software and firmware
@@ -20,12 +20,12 @@ Software needed to be installed and firmware needed to be downloaded
 to build a Thingsquare system:
 
 * [Atmel Studio 6.2 or later](http://www.atmel.com/tools/ATMELSTUDIO.aspx)
-* The Thingsquare SAMR21 firmware `firmware.hex` from the [firmware directory](../firmware/)
-* The Thingsquare SAMR21 Ethernet router firmware `router-webserver-node.hex` from the [firmware directory](../firmware/)
+* The Thingsquare SAMR21 firmware `client.hex` from the [firmware directory](../firmware/)
+* The Thingsquare SAMR21 Ethernet router firmware `gateway.hex` from the [firmware directory](../firmware/)
 
 ## Upload the firmware to the wireless nodes
 
-* Download the Thingsquare SAMR21 firmware `firmware.hex`from the [firmware directory](../firmware/)
+* Download the Thingsquare SAMR21 firmware `client.hex`from the [firmware directory](../firmware/)
 * Start Atmel Studio
 * Connect a SAM R21 board to your PC (using the connector labeled "EDBG USB")
 * Verify that Atmel Studio discovers the board (it should show up automatically)
@@ -46,7 +46,7 @@ Screen captures below:
 The router node is a regular SAM R21 board with an Ethernet connector
 board that runs the Thingsquare router firmware.
 * Attach the Ethernet extension board to the EXT1 header on the R21 board
-* Program the node using Atmel studio as above with the Thingsquare SAMR21 Ethernet router firmware `router-webserver-node.hex`
+* Program the node using Atmel studio as above with the Thingsquare SAMR21 Ethernet router firmware `gateway.hex`
 from the [firmware directory](../firwmare/)
 
 
@@ -61,13 +61,19 @@ from the [firmware directory](../firwmare/)
 * The Ethernet router should blink its LED until it has successfully
   connected to the Ethernet
 * The wireless nodes should blink its LED until it has successfully
-  connected to the wireless network and to the
-  [Thingsquare demo server](https://demo.thsq.io)
+  connected to the wireless network and to the Thingsquare backend
 
-# Log in to the cloud
-If everything has gone well, the wireless nodes should print out a PIN
-number on the USB serial port. Attach to the EDBG USB serial port to
-read it out.
+## Open the app
+Download the Thingsquare app from Google Play or the Apple app store and open it.
 
-Log in to the [Thingsquare cloud](https://demo.thsq.io) and register
-your devices with their PIN numbers.
+Tap the _Devices_ button to see the list of nearby devices. If the SAMR21 boards are not in the list, tap the _Scan_ button to scan for new devices.
+
+## Troubleshooting
+
+If you don't see the devices in the list even after scanning, make sure the LEDs have stopped blinking. If the LEDs are blinking, this means that the devices have not yet connected to the backend.
+
+If the devices still do not show up in the app after scanning, make sure you are connected to the same WiFi as the SAMR21 Ethernet gateway.
+
+## Connect to GPIOs
+
+Two GPIO pins of the SAMR21 board can be controlled from the smartphone app: PA13 and PA28. They can be found on the EXT1 extension header. Connect an LED between either of the pins and the ground pin. You should now be able to control the LEDs from the app.
